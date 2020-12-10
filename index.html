@@ -1,72 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DME Asg 1</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DME Asg 1</title>
 
-    <!--CSS Styling-->
-    <!--Ionic-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
-    <link rel="styleSheet" href="./css/style.css"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!--CSS Styling-->
+  <!--Ionic-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+  <link rel="styleSheet" href="./css/style.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-
-    <!--Javascript-->
-    <!--Ionic-->
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
-    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
-    <script type="application/javascript" src="./js/main.js"></script>
-
+  <!--Javascript-->
+  <!--Ionic-->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script type="application/javascript" src="./js/main.js"></script>
 </head>
+
 <body>
+  <ion-app>
+  <div class="smallHeader"></div>
 
-    <div class="smallHeader"></div>
+  <div>
+    <img class="logo" src="./image/heart.png" /><br />
+    <h3>Fluids</h3>
+  </div>
 
-    <div ><img class="logo" src="./image/heart.png"><br><h3>Fluids</h3></div>
-
-    <ion-content>
+  <ion-content>
     <ion-grid>
-      <ion-row>
+
+      <!------------------- Start of login page -------------------------------------------------------------------------------------------------------->
+      <ion-row id="login-page">
+        <ion-col> </ion-col>
+        <form id="login-form">
+          <ion-col size="8" class="ion-align-self-center">
+            <h4>Login</h4>
+
+            <br/>
+
+            <ion-item lines="full">
+              <ion-label position="floating">Email</ion-label>
+              <ion-input type="email" id="logEmail" required></ion-input>
+            </ion-item>
+
+            <br />
+
+            <ion-item lines="full">
+              <ion-label position="floating">Password</ion-label>
+              <ion-input type="password" id="logPassword" required></ion-input>
+            </ion-item>
+
+            <br />
+
+            <ion-button type="submit" color="warning" expand="block" onclick="login()">Login</ion-button>
+            <br />
+            <ion-button type="button" color="warning" expand="block" onclick="loadSignup()">Sign up</ion-button>
+            <br />
+            <h5>Forgot password?</h5>
+          </ion-col>
+        </form>
+        <ion-col> </ion-col>
+      </ion-row>
+      <!------------------- End of login page -------------------------------------------------------------------------------------------------------->
+
+      <!------------------- Start of sign up page -------------------------------------------------------------------------------------------------------->
+      <ion-row id="signup-page">
         <ion-col>
         </ion-col>
-        <form>
+        <form id="register-form">
         <ion-col size="8" class="ion-align-self-center">
 
-          <h4>Login</h4>
+          <h4>Sign up</h4>
+
+          <ion-item lines="full">
+            <ion-label position="floating">Name</ion-label>
+            <ion-input type="text" id="userName" required></ion-input>
+          </ion-item>
 
           <br>
 
           <ion-item lines="full">
             <ion-label position="floating">Email</ion-label>
-            <ion-input type="email" required></ion-input>
+            <ion-input type="email" id="userEmail" required></ion-input>
           </ion-item>
 
           <br>
 
           <ion-item lines="full">
             <ion-label position="floating">Password</ion-label>
-            <ion-input type="password" required></ion-input>
+            <ion-input type="password" id="userPassword" required></ion-input>
           </ion-item>
 
           <br>
 
-          <ion-button type="submit" color="warning" expand="block">Login</ion-button>
+          <ion-item lines="full">
+            <ion-label>Brithday</ion-label>
+            <ion-datetime value="1990-02-19" placeholder="Select Date" min="1950" max="2007" id="userDOB" required></ion-datetime>
+          </ion-item>
+
           <br>
-          <ion-button type="button" color="warning" expand="block" href="./signup.html">Sign up</ion-button>
+
+          <ion-button type="submit" color="warning" expand="block" onclick="signup()">Sign up</ion-button>
           <br>
-          <h5>Forgot password?</h5>
+          <ion-button type="button" color="warning" expand="block" onclick="loadLogin()">Login</ion-button>
 
         </ion-col>
         </form>
         <ion-col>
         </ion-col>
       </ion-row>
+
+      <!------------------- End of sign up page -------------------------------------------------------------------------------------------------------->
+
+
     </ion-grid>
   </ion-content>
-  
-    
+
+</ion-app>
 </body>
+
 </html>

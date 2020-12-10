@@ -6,13 +6,24 @@ body{
 
 .smallHeader{
     height: 10%;
-    background-color: #ff9494;
+    background-color:#FFB2B2;
     margin: 0 0 10% 0;
 }
 
 .logo{
     width: 30%;
     margin: 0 35%;
+}
+
+.smlogo{
+    text-align: center;
+    width: 15%;
+    margin: 5% 5% 0 5%;
+}
+
+.mdlogo{
+    width: 15%;
+    margin: 5% 23% 5% 5%;
 }
 
 h3{
@@ -34,11 +45,22 @@ h5{
     color: slategray;
 }
 
+.navbar{
+    text-align: center;
+    /*background-color: #ff9494;*/
+}
+
+
+
 :root {
-    --ion-color-warning: #ff9494;
+    --ion-color-warning: #FFB2B2;
     --ion-color-warning-rgb: 255,148,148;
     --ion-color-warning-contrast: #000000;
     --ion-color-warning-contrast-rgb: 0,0,0;
     --ion-color-warning-shade: #e08282;
     --ion-color-warning-tint: #ff9f9f;
+  }
+
+  .my-custom-menu {
+    --width: 500px;
   }
