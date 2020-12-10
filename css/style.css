@@ -1,0 +1,44 @@
+
+
+body{
+    font-family: 'Raleway', sans-serif;
+}
+
+.smallHeader{
+    height: 10%;
+    background-color: #ff9494;
+    margin: 0 0 10% 0;
+}
+
+.logo{
+    width: 30%;
+    margin: 0 35%;
+}
+
+h3{
+    margin: 5% 0 0 0;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 42px;
+    font-weight: 600;
+}
+
+h4{
+    text-align: center;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+h5{
+    text-align: center;
+    color: slategray;
+}
+
+:root {
+    --ion-color-warning: #ff9494;
+    --ion-color-warning-rgb: 255,148,148;
+    --ion-color-warning-contrast: #000000;
+    --ion-color-warning-contrast-rgb: 0,0,0;
+    --ion-color-warning-shade: #e08282;
+    --ion-color-warning-tint: #ff9f9f;
+  }
