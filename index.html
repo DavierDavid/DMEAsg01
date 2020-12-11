@@ -35,7 +35,7 @@
     <ion-grid>
 
       <!------------------- Start of login page -------------------------------------------------------------------------------------------------------->
-      <ion-row id="login-page">
+      <ion-row id="login-page" onsubmit="signup()">
         <ion-col> </ion-col>
         <form id="login-form">
           <ion-col size="8" class="ion-align-self-center">
@@ -72,7 +72,7 @@
       <ion-row id="signup-page">
         <ion-col>
         </ion-col>
-        <form id="register-form">
+        <form id="register-form" onsubmit="signup()">
         <ion-col size="8" class="ion-align-self-center">
 
           <h4>Sign up</h4>
@@ -100,12 +100,12 @@
 
           <ion-item lines="full">
             <ion-label>Brithday</ion-label>
-            <ion-datetime value="1990-02-19" placeholder="Select Date" min="1950" max="2007" id="userDOB" required></ion-datetime>
+            <ion-datetime value="2000-01-26" placeholder="Select Date" min="1950" max="2007" id="userDOB" required></ion-datetime>
           </ion-item>
 
           <br>
 
-          <ion-button type="submit" color="warning" expand="block" onclick="signup()">Sign up</ion-button>
+          <ion-button type="button" color="warning" expand="block" onclick="signup()">Sign up</ion-button>
           <br>
           <ion-button type="button" color="warning" expand="block" onclick="loadLogin()">Login</ion-button>
 
