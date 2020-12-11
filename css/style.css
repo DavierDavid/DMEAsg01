@@ -12,6 +12,7 @@ body{
     --ion-color-warning-contrast-rgb: 0,0,0;
     --ion-color-warning-shade: #e08282;
     --ion-color-warning-tint: #ff9f9f;
+
   }
 
 /*-----------Title----------------------------------*/
@@ -34,6 +35,22 @@ h4{
 h5{
     text-align: center;
     color: slategray;
+}
+
+h6{
+    text-align: center;
+    font-size: 20px;
+}
+
+.sameLine{
+    display: inline-block;
+    vertical-align: bottom;
+    padding: 5px;
+}
+
+.right{
+    margin: 3% 0 0 0;
+    float: right;
 }
 
 
@@ -72,6 +89,7 @@ h5{
 .main-content{
 margin: 25% 0 0 0;
 height: 60%;
+z-index: 1;
 }
 
 /*--------------Big circle----------------------------------------------*/
@@ -119,3 +137,9 @@ height: 60%;
 	top:1px;
 }
 
+.customModal .modal-wrapper{
+    height: 40%;
+    top: 60%;
+    position: absolute; 
+    display: block;  
+}

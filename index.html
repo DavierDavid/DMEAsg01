@@ -19,7 +19,7 @@
   <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
   <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script type="application/javascript" src="./js/main.js"></script>
+  
 </head>
 
 <body>
@@ -35,7 +35,7 @@
     <ion-grid>
 
       <!------------------- Start of login page -------------------------------------------------------------------------------------------------------->
-      <ion-row id="login-page" onsubmit="signup()">
+      <ion-row id="login-page">
         <ion-col> </ion-col>
         <form id="login-form">
           <ion-col size="8" class="ion-align-self-center">
@@ -57,9 +57,9 @@
 
             <br />
 
-            <ion-button type="submit" color="warning" expand="block" onclick="login()">Login</ion-button>
+            <ion-button type="submit" color="warning" expand="block" id="logInBtn">Login</ion-button>
             <br />
-            <ion-button type="button" color="warning" expand="block" onclick="loadSignup()">Sign up</ion-button>
+            <ion-button type="button" color="warning" expand="block" id="loadSign">Sign up</ion-button>
             <br />
             <h5>Forgot password?</h5>
           </ion-col>
@@ -72,7 +72,7 @@
       <ion-row id="signup-page">
         <ion-col>
         </ion-col>
-        <form id="register-form" onsubmit="signup()">
+        <form id="register-form">
         <ion-col size="8" class="ion-align-self-center">
 
           <h4>Sign up</h4>
@@ -105,9 +105,9 @@
 
           <br>
 
-          <ion-button type="button" color="warning" expand="block" onclick="signup()">Sign up</ion-button>
+          <ion-button type="submit" color="warning" expand="block" id="signInBtn">Sign up</ion-button>
           <br>
-          <ion-button type="button" color="warning" expand="block" onclick="loadLogin()">Login</ion-button>
+          <ion-button type="button" color="warning" expand="block" id="loadLog">Login</ion-button>
 
         </ion-col>
         </form>
@@ -122,6 +122,7 @@
   </ion-content>
 
 </ion-app>
+<script type="application/javascript" src="./js/main.js"></script>
 </body>
 
 </html>
