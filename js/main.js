@@ -2,7 +2,7 @@
 //-----------hide signup page on load------------------------------
 $(document).ready(function(){
     $('#signup-page').hide();
-    $('#editDate').hide();
+    $("#noDateCircle").hide();
 
 
 //create var to store user details on signup
@@ -46,6 +46,11 @@ $('#loadSign').click(function(e){
     loadSignup();
 });
 
+$('#logoutBtn').click(function(e){
+    e.preventDefault();
+    window.location.href = "./index.html";
+});
+
 /*$('#setDateBtn').click(function(e){
     e.preventDefault();
     logDates();
@@ -53,11 +58,6 @@ $('#loadSign').click(function(e){
 });*/
 
 $("body").on("click", "#setDateBtn", function(e) {
-    e.preventDefault();
-    logDates();
-  });
-
-  $("body").on("click", "#clearDateBtn", function(e) {
     e.preventDefault();
     logDates();
   });
@@ -104,7 +104,8 @@ function signup(){
     //var test1 = localStorage.getItem("storedName");
     logbday = logbday.slice(5, 11);
     //alert(test1);
-
+    $('#signup-page').hide();
+    $('#login-page').show();
     console.log("Sign up success! " + logname + " " + logemail + " " + logpass + " " + logbday);
 }
 
@@ -178,7 +179,9 @@ function logDates(){
 
 }
 
-
+//-------------------Set profile details------------------------------------------------
+document.getElementById("displayName").innerHTML = localStorage.getItem('storedName');
+document.getElementById("displayEmail").innerHTML = localStorage.getItem('storedEmail');
 
 });
 
@@ -227,8 +230,13 @@ customElements.define('modal-content', class ModalContent extends HTMLElement {
   let currentModal = null;
 
   const button = document.getElementById('logDateBtn');
-  if(button){
+  const button3 = document.getElementById('logDataBtn2');
+  const button4 = document.getElementById('logDataBtn3');
+  //const button = document.getElementsByClassName("logDataBtn");
+  if(button || button3 || button4){
     button.addEventListener('click', createModal);
+    button3.addEventListener('click', createModal);
+    button4.addEventListener('click', createModal);
   }
   else{
       console.log("button is null/undefined");
@@ -257,5 +265,3 @@ customElements.define('modal-content', class ModalContent extends HTMLElement {
       currentModal.dismiss().then(() => { currentModal = null; });
     }
   }
-
-  
