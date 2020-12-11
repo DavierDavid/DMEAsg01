@@ -41,6 +41,7 @@ h6{
     padding-top: 5%;
     text-align: center;
     font-size: 20px;
+    color: #ffb2b2;
 }
 
 .sameLine{
@@ -72,6 +73,7 @@ h6{
     text-align: center;
     font-size: 68px;
     padding-bottom: 5%;
+    color: #ffb2b2;
 }
 /*-----------medium size logo----------------------------------*/
 .mdlogo{
@@ -163,6 +165,13 @@ z-index: 1;
     display: block;  
 }
 
+.customModal2 .modal-wrapper{
+    height: 60%;
+    top: 40%;
+    position: absolute; 
+    display: block;  
+}
+
 .test{
     background-color: red;
     color: green;
@@ -173,4 +182,22 @@ z-index: 1;
     text-align: center;
     font-size: 18px;
     font-weight: 400;
+}
+
+.edit-button {
+	background-color:#ffb2b2;
+	border-radius:42px;
+	border:1px solid #ffb2b2;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	padding:8px 50px;
+    text-decoration:none;
+}
+
+.edit-button:active {
+	position:relative;
+	top:1px;
 }

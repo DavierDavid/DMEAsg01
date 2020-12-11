@@ -62,6 +62,11 @@ $("body").on("click", "#setDateBtn", function(e) {
     logDates();
   });
 
+  $("body").on("click", "#updateBtn", function(e) {
+    e.preventDefault();
+    updateDetails();
+  });
+
 
 /*$('#dismiss').click(function(e){
     dismissModal();
@@ -132,6 +137,25 @@ function login(){
     }
 }
 
+//-------------------Update profile details-------------------------------------------
+
+function updateDetails(){
+    logname = $('#userName').val();
+    logpass = $('#userPassword').val();
+    logemail = $('#userEmail').val();
+    logbday = $('#userDOB').val();
+
+    localStorage.setItem('storedName', logname);
+    localStorage.setItem('storedPass', logpass);
+    localStorage.setItem('storedEmail', logemail);
+    localStorage.setItem('storedBday', logbday);
+
+    //logbday = logbday.slice(5, 11);
+
+    console.log("Update success! " + logname + " " + logemail + " " + logpass + " " + logbday);
+    window.location.href = "./main.html";
+}
+
 //----------function to open menu--------------------------
 
 async function openMenu() {
@@ -187,6 +211,8 @@ document.getElementById("displayEmail").innerHTML = localStorage.getItem('stored
 
 //-----------------END OF DOCUMENT ON READY-----------------------------------------------
 
+
+//-----------------Edit dates modal--------------------------------------------------------
 customElements.define('modal-content', class ModalContent extends HTMLElement {
     connectedCallback() {
       this.innerHTML = `
@@ -195,7 +221,7 @@ customElements.define('modal-content', class ModalContent extends HTMLElement {
           <ion-toolbar>
             <ion-title>Log your dates!</ion-title>
             <ion-buttons slot="end">
-              <ion-button id="dismiss" onclick="dismissModal()"><ion-icon name="close" size="large"></ion-icon></ion-button>
+            <ion-button id="dismiss" onclick="dismissModal()"><ion-icon name="close" size="large"></ion-icon></ion-button>
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
@@ -249,7 +275,6 @@ customElements.define('modal-content', class ModalContent extends HTMLElement {
   else{
   }
   
-
   async function createModal() {
     const modal = await modalController.create({
       component: 'modal-content',
@@ -263,5 +288,93 @@ customElements.define('modal-content', class ModalContent extends HTMLElement {
   function dismissModal() {
     if (currentModal) {
       currentModal.dismiss().then(() => { currentModal = null; });
+    }
+  }
+
+//-----------------Edit details modal--------------------------------------------------------
+
+  customElements.define('modal-content2', class ModalContent extends HTMLElement {
+    connectedCallback() {
+      this.innerHTML = `
+
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Update details!</ion-title>
+            <ion-buttons slot="end">
+              <ion-button id="dismiss" onclick="dismissModal2()"><ion-icon name="close" size="large"></ion-icon></ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+
+        <br><br>
+
+        <ion-content>
+          <ion-row>
+          <ion-col class="setDates">
+          <form id="edit-details-form">
+          <ion-item lines="full">
+            <ion-label position="floating">Name</ion-label>
+            <ion-input type="text" id="userName" required></ion-input>
+          </ion-item>
+
+          <br>
+
+          <ion-item lines="full">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" id="userEmail" required></ion-input>
+          </ion-item>
+
+          <br>
+
+          <ion-item lines="full">
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" id="userPassword" required></ion-input>
+          </ion-item>
+
+          <br>
+
+          <ion-item lines="full">
+            <ion-label>Brithday</ion-label>
+            <ion-datetime value="2000-01-26" placeholder="Select Date" min="1950" max="2007" id="userDOB" required></ion-datetime>
+          </ion-item>
+
+          <br>
+
+          <ion-button type="button" color="warning" expand="block" id="updateBtn">Update</ion-button>
+          <br>
+
+          <form>
+          </ion-col>
+          </ion-row>
+          
+        </ion-content>
+      `;
+    }
+  });
+
+  let currentModal2 = null;
+
+  const button5 = document.getElementById('editDetails');
+
+  if(button5){
+    button5.addEventListener('click', createModal2);
+  }
+  else{
+      console.log("button5 is null/undefined");
+  }
+
+  async function createModal2() {
+    const modal = await modalController.create({
+      component: 'modal-content2',
+      cssClass: 'customModal2'
+    });
+
+    await modal.present();
+    currentModal2 = modal;
+  }
+
+  function dismissModal2() {
+    if (currentModal2) {
+      currentModal2.dismiss().then(() => { currentModal2 = null; });
     }
   }
