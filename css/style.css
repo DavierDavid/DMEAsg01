@@ -5,13 +5,46 @@ body{
 }
 
 /*-----------change ionic default colors----------------------------------*/
-  :root {
-    --ion-color-main: #b3e7f4;
-    --ion-color-main-rgb: 179,231,244;
+:root {
+    --ion-color-main: #81B29A;
+    --ion-color-main-rgb: 129,178,154;
     --ion-color-main-contrast: #000000;
     --ion-color-main-contrast-rgb: 0,0,0;
-    --ion-color-main-shade: #9ecbd7;
-    --ion-color-main-tint: #bbe9f5;
+    --ion-color-main-shade: #729d88;
+    --ion-color-main-tint: #8ebaa4;
+
+    --ion-color-sub: #3D405B;
+    --ion-color-sub-rgb: 61,64,91;
+    --ion-color-sub-contrast: #ffffff;
+    --ion-color-sub-contrast-rgb: 255,255,255;
+    --ion-color-sub-shade: #363850;
+    --ion-color-sub-tint: #50536b;
+
+    --ion-background-color: #E6F0EB;
+    --ion-background-color-rgb: 230,240,235;
+  
+    --ion-text-color: #000000;
+    --ion-text-color-rgb: 0,0,0;
+  
+    --ion-color-step-50: #dbe4df;
+    --ion-color-step-100: #cfd8d4;
+    --ion-color-step-150: #c4ccc8;
+    --ion-color-step-200: #b8c0bc;
+    --ion-color-step-250: #adb4b0;
+    --ion-color-step-300: #a1a8a5;
+    --ion-color-step-350: #969c99;
+    --ion-color-step-400: #8a908d;
+    --ion-color-step-450: #7f8481;
+    --ion-color-step-500: #737876;
+    --ion-color-step-550: #676c6a;
+    --ion-color-step-600: #5c605e;
+    --ion-color-step-650: #515452;
+    --ion-color-step-700: #454847;
+    --ion-color-step-750: #3a3c3b;
+    --ion-color-step-800: #2e302f;
+    --ion-color-step-850: #232423;
+    --ion-color-step-900: #171817;
+    --ion-color-step-950: #0c0c0c;
   }
   
   .ion-color-main {
@@ -21,6 +54,14 @@ body{
     --ion-color-contrast-rgb: var(--ion-color-main-contrast-rgb);
     --ion-color-shade: var(--ion-color-main-shade);
     --ion-color-tint: var(--ion-color-main-tint);
+  }
+  .ion-color-sub {
+    --ion-color-base: var(--ion-color-sub);
+    --ion-color-base-rgb: var(--ion-color-sub-rgb);
+    --ion-color-contrast: var(--ion-color-sub-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-sub-contrast-rgb);
+    --ion-color-shade: var(--ion-color-sub-shade);
+    --ion-color-tint: var(--ion-color-sub-tint);
   }
   
 
@@ -50,7 +91,7 @@ h6{
     padding-top: 5%;
     text-align: center;
     font-size: 20px;
-    color: #b3e7f4;
+    color: #81B29A;
 }
 
 .sameLine{
@@ -68,13 +109,14 @@ h6{
 /*-----------Pink banner----------------------------------*/
 .smallHeader{
     height: 8%;
-    background-color:#b3e7f4;
+    background-color:#81B29A;
 }
 
 /*-----------full size logo----------------------------------*/
 .logo{
     width: 30%;
-    margin: 0 35%;
+    padding: 2%;
+    margin: 5% 35%;
 }
 
 /*-----------small size logo----------------------------------*/
@@ -82,7 +124,7 @@ h6{
     text-align: center;
     font-size: 68px;
     padding-bottom: 5%;
-    color: #b3e7f4;
+    color: #81B29A;
 }
 /*-----------medium size logo----------------------------------*/
 .mdlogo{
@@ -105,7 +147,7 @@ z-index: 1;
 
 /*--------------Big circle----------------------------------------------*/
 .circle{
-    background-color: #b3e7f4;
+    background-color: #81B29A;
     border-radius: 50%;
     height: 350px;
     margin: 25% 0 0 0;
@@ -137,7 +179,7 @@ z-index: 1;
 	border:2px solid #ffffff;
 	display:inline-block;
 	cursor:pointer;
-	color:#b3e7f4;
+	color:#81B29A;
 	font-family: 'Quicksand', sans-serif;
     font-size:18px;
     margin: 55% 0 0 0;
@@ -150,9 +192,9 @@ z-index: 1;
 }
 
 .circle-button2 {
-	background-color: #b3e7f4;
+	background-color: #81B29A;
 	border-radius:42px;
-	border:2px solid #b3e7f4;
+	border:2px solid #81B29A;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
@@ -201,9 +243,9 @@ z-index: 1;
 }
 
 .edit-button {
-	background-color:#b3e7f4;
+	background-color:#81B29A;
 	border-radius:42px;
-	border:1px solid #b3e7f4;
+	border:1px solid #81B29A;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
@@ -226,4 +268,12 @@ z-index: 1;
 .desc-container{
     text-align: center;
     padding: 30% 0 0 0;
+}
+
+.circle-desc{
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    color: #81B29A;
 }

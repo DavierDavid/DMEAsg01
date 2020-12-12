@@ -350,7 +350,7 @@ function checkMood(){
 
   if(localStorage['storedFlow']){
     $('#flowText').show();
-    document.getElementById("flowText").innerHTML = localStorage.getItem('storedFlow');
+    document.getElementById("flowText").innerHTML = "You're having " + localStorage.getItem('storedFlow') + " flow";
     console.log("flow not empty, showing desc");
   }
   else{
@@ -360,7 +360,7 @@ function checkMood(){
 
   if(localStorage['storedSleep']){
     $('#slpText').show();
-    document.getElementById("slpText").innerHTML = localStorage.getItem('storedSleep');
+    document.getElementById("slpText").innerHTML = "You slept for " + localStorage.getItem('storedSleep') + " hours";
     console.log("sleep not empty, showing desc");
   }
   else{
@@ -668,9 +668,9 @@ customElements.define('modal-content4', class ModalContent extends HTMLElement {
         
         <ion-label><div class="formTitle">Hours of sleep</div></ion-label>
         <ion-item>
-          <ion-range id="moodSleep" min="1" max="20" step="1" value="8" pin snaps color="secondary">
-            <ion-icon slot="start" size="small" color="secondary" name="bed"></ion-icon>
-            <ion-icon slot="end" size="large" color="secondary" name="bed"></ion-icon>
+          <ion-range id="moodSleep" min="1" max="20" step="1" value="8" pin snaps color="sub">
+            <ion-icon slot="start" size="small" color="sub" name="bed"></ion-icon>
+            <ion-icon slot="end" size="large" color="sub" name="bed"></ion-icon>
           </ion-range>
         </ion-item>
         <br>
