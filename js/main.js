@@ -24,6 +24,11 @@ var logStartMonth;
 var logEndDay;
 var logEndMonth;
 
+
+//------------store default period/cycle lengths---------------------------
+var userPeriod = 7;
+var userCycle = 25;
+
 //------------buttons on click----------------------------------------------
 
 $('#logInBtn').click(function(e){
@@ -65,6 +70,11 @@ $("body").on("click", "#setDateBtn", function(e) {
   $("body").on("click", "#updateBtn", function(e) {
     e.preventDefault();
     updateDetails();
+  });
+
+  $("body").on("click", "#logLengthBtn", function(e) {
+    e.preventDefault();
+    setLength();
   });
 
 
@@ -203,6 +213,26 @@ function logDates(){
 
 }
 
+function setLength(){
+
+  console.log(" previous period length = " + userPeriod + " cycle length = " + userCycle);
+
+  userCycle = $('#cycleLength:nth-child(2)').val();
+  userPeriod = $('#periodLength:nth-child(2)').val();
+
+  userCycle = userCycle.slice(8, 10);
+  userPeriod = userPeriod.slice(8, 10);
+
+  localStorage.setItem('storedPeriod', userPeriod);
+  localStorage.setItem('storedCycle', userCycle);
+
+  console.log("period length = " + userPeriod + " cycle length = " + userCycle);
+
+
+
+
+}
+
 //-------------------Set profile details------------------------------------------------
 document.getElementById("displayName").innerHTML = localStorage.getItem('storedName');
 document.getElementById("displayEmail").innerHTML = localStorage.getItem('storedEmail');
@@ -257,12 +287,10 @@ customElements.define('modal-content', class ModalContent extends HTMLElement {
 
   const button = document.getElementById('logDateBtn');
   const button3 = document.getElementById('logDataBtn2');
-  const button4 = document.getElementById('logDataBtn3');
   //const button = document.getElementsByClassName("logDataBtn");
   if(button || button3 || button4){
     button.addEventListener('click', createModal);
     button3.addEventListener('click', createModal);
-    button4.addEventListener('click', createModal);
   }
   else{
       console.log("button is null/undefined");
@@ -378,3 +406,78 @@ customElements.define('modal-content', class ModalContent extends HTMLElement {
       currentModal2.dismiss().then(() => { currentModal2 = null; });
     }
   }
+
+  //-----------------Edit dates modal--------------------------------------------------------
+customElements.define('modal-content3', class ModalContent extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Set your dates!</ion-title>
+          <ion-buttons slot="end">
+          <ion-button id="dismiss" onclick="dismissModal3()"><ion-icon name="close" size="large"></ion-icon></ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <br><br>
+
+      <ion-content>
+        <ion-row>
+        <ion-col class="setDates">
+        <form id="log-date-form">
+        <ion-item lines="full">
+          <ion-label>Period Length</ion-label>
+          <ion-datetime placeholder="7" display-format="D" id="periodLength"></ion-datetime>
+        </ion-item>
+      <br>
+        <ion-item lines="full">
+          <ion-label>Cycle Length</ion-label>
+          <ion-datetime placeholder="25" display-format="D" id="cycleLength"></ion-datetime>
+        </ion-item>
+
+        <ion-button type="button" color="warning" expand="block" id="logLengthBtn">Set</ion-button>
+        
+        <form>
+        </ion-col>
+        </ion-row>
+        
+      </ion-content>
+    `;
+  }
+});
+
+let currentModal3 = null;
+
+const button6 = document.getElementById('setLengthBtn');
+//const button = document.getElementsByClassName("logDataBtn");
+if(button6){
+  button6.addEventListener('click', createModal3);
+}
+else{
+    console.log("button is null/undefined");
+}
+
+const button7 = document.getElementById('dismiss');
+if(button7){
+    button7.addEventListener('click', dismissModal3);
+}
+else{
+}
+
+async function createModal3() {
+  const modal = await modalController.create({
+    component: 'modal-content3',
+    cssClass: 'customModal'
+  });
+
+  await modal.present();
+  currentModal = modal;
+}
+
+function dismissModal3() {
+  if (currentModal) {
+    currentModal.dismiss().then(() => { currentModal = null; });
+  }
+}
