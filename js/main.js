@@ -2,8 +2,15 @@
 //-----------hide signup page on load------------------------------
 $(document).ready(function(){
     $('#signup-page').hide();
+    //$('#slpText').hide();
+    //$('#flowText').hide();
     //$("#noDateCircle").hide();
 
+//create var to store today's date
+var d = new Date();
+var todayDate = parseInt(d.getDate());
+
+//console.log(todayDate);
 
 //create var to store user details on signup
 
@@ -16,6 +23,9 @@ var logname;
 var logpass;
 var logemail;
 var logbday;
+
+var logFlow;
+var logSleep;
 
 var logStart 
 var logEnd;
@@ -77,7 +87,10 @@ $("body").on("click", "#setDateBtn", function(e) {
     e.preventDefault();
     setLength();
   });
-
+  $("body").on("click", "#logMoodBtn", function(e) {
+    e.preventDefault();
+    setMood();
+  });
 
 /*$('#dismiss').click(function(e){
     dismissModal();
@@ -210,7 +223,8 @@ function logDates(){
     localStorage.setItem('storedEndDay', logEndDay);
     localStorage.setItem('storedEndMonth', logEndMonth);
 
-    
+    calculateOngoing();
+    calculateUpcoming();
   
   //console.log("success! " + logStart + " " + logEnd)
 
@@ -231,6 +245,8 @@ function setLength(){
 
   console.log("period length = " + userPeriod + " cycle length = " + userCycle);
 
+  calculateUpcoming()
+
 
 
 
@@ -240,6 +256,12 @@ function setLength(){
 document.getElementById("displayName").innerHTML = localStorage.getItem('storedName');
 document.getElementById("displayEmail").innerHTML = localStorage.getItem('storedEmail');
 
+//-------------------Set sleep and flow details-------------------------------------------
+
+document.getElementById("slpText").innerHTML = localStorage.getItem('storedSleep');
+document.getElementById("flowText").innerHTML = localStorage.getItem('storedFlow');
+
+//--------------------Change page to preview----------------------------------------------
 function checkDate(){
 
   if(localStorage['storedStartDay']){
@@ -262,7 +284,100 @@ function checkDate(){
   }
 }
 
+function calculateUpcoming(){
+  if(logEndDay < todayDate){
+
+    var edDate = parseInt(localStorage.getItem('storedEndDay'));
+    var stCycle = parseInt(localStorage.getItem('storedCycle'));
+
+    //console.log(stCycle + edDate);
+
+    if(localStorage['storedCycle']){
+      var dueDate = edDate + stCycle;
+      document.getElementById("cir-ed-date").innerHTML = dueDate + " Days";
+      //console.log("stCycle got value");
+    }
+    else{
+      var dueDate = edDate + 25;
+      document.getElementById("cir-ed-date").innerHTML = dueDate + " Days";
+      //console.log("stCycle no value");
+    }
+    
+  }
+  /*
+  if end date is < current date
+  then take end date add cycle length = due date
+  due date minus current date = diff
+  period text = diff days
+  
+  else if end date >= current date
+  then period text = period coming soon
+  */
+}
+
+function calculateOngoing(){
+  if(todayDate > logStartDay){
+    var stDate = parseInt(localStorage.getItem('storedStartDay'));
+    var difference = todayDate - stDate;
+    document.getElementById("cir-st-date").innerHTML = "Day " + difference;
+    //console.log("Day " + difference);
+  }
+  else{
+    document.getElementById("cir-st-date").innerHTML = "Day 1";
+  }
+
+  //never include month, can only calculate based on days. 
+}
+
+function setMood(){
+  logFlow = $('#moodFlow').val();
+  logSleep = $('#moodSleep').val();
+
+  /*logSleep = parseInt(logSleep);
+  logFlow = parseInt(logFlow);*/
+
+  localStorage.setItem('storedSleep', logSleep);
+  localStorage.setItem('storedFlow', logFlow);
+
+  console.log(logSleep + " " + logFlow);
+
+  checkMood();
+
+
+}
+
+function checkMood(){
+
+  if(localStorage['storedFlow']){
+    $('#flowText').show();
+    document.getElementById("flowText").innerHTML = localStorage.getItem('storedFlow');
+    console.log("flow not empty, showing desc");
+  }
+  else{
+    $('#flowText').hide();
+    console.log("flow empty, hiding desc");
+  }
+
+  if(localStorage['storedSleep']){
+    $('#slpText').show();
+    document.getElementById("slpText").innerHTML = localStorage.getItem('storedSleep');
+    console.log("sleep not empty, showing desc");
+  }
+  else{
+    $('#slpText').hide();
+    console.log("sleep empty, hiding desc");
+  }
+  
+}
+
+
+
+checkMood();
 checkDate();
+calculateOngoing();
+calculateUpcoming();
+
+
 
 });
 
@@ -299,7 +414,7 @@ customElements.define('modal-content', class ModalContent extends HTMLElement {
             <ion-datetime picker-format="D M" display-format="D MMM" placeholder="Select Date" min="2020" id="userEnd" required></ion-datetime>
           </ion-item>
 
-          <ion-button type="button" color="warning" expand="block" id="setDateBtn">Set</ion-button>
+          <ion-button type="button" color="main" expand="block" id="setDateBtn">Set</ion-button>
           
           <form>
           </ion-col>
@@ -397,7 +512,7 @@ customElements.define('modal-content', class ModalContent extends HTMLElement {
 
           <br>
 
-          <ion-button type="button" color="warning" expand="block" id="updateBtn">Update</ion-button>
+          <ion-button type="button" color="main" expand="block" id="updateBtn">Update</ion-button>
           <br>
 
           <form>
@@ -466,7 +581,7 @@ customElements.define('modal-content3', class ModalContent extends HTMLElement {
           <ion-datetime placeholder="25" display-format="D" id="cycleLength"></ion-datetime>
         </ion-item>
 
-        <ion-button type="button" color="warning" expand="block" id="logLengthBtn">Set</ion-button>
+        <ion-button type="button" color="main" expand="block" id="logLengthBtn">Set</ion-button>
         
         <form>
         </ion-col>
@@ -507,7 +622,102 @@ async function createModal3() {
 
 function dismissModal3() {
   if (currentModal) {
-    currentModal.dismiss().then(() => { currentModal = null; });
+    currentModal.dismiss().then(() => { currentModal3 = null; });
   }
 }
+
+//-----------------Edit mood modal--------------------------------------------------------
+customElements.define('modal-content4', class ModalContent extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>How are you feeling?</ion-title>
+          <ion-buttons slot="end">
+          <ion-button id="dismiss" onclick="dismissModal4()"><ion-icon name="close" size="large"></ion-icon></ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <br>
+
+      <ion-content>
+        <ion-row>
+        <ion-col class="setDates">
+        <form id="log-mood-form">
+
+        <ion-radio-group id="moodFlow">
+            <ion-label><div class="formTitle">Menstrual flow</div></ion-label>
+          <ion-item>
+            <ion-label>Light</ion-label>
+            <ion-radio slot="start" color="main" value="light"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Medium</ion-label>
+            <ion-radio slot="start" color="main" value="medium"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Heavy</ion-label>
+            <ion-radio slot="start" color="main" value="heavy"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+        <br>
+        
+        <ion-label><div class="formTitle">Hours of sleep</div></ion-label>
+        <ion-item>
+          <ion-range id="moodSleep" min="1" max="20" step="1" value="8" pin snaps color="secondary">
+            <ion-icon slot="start" size="small" color="secondary" name="bed"></ion-icon>
+            <ion-icon slot="end" size="large" color="secondary" name="bed"></ion-icon>
+          </ion-range>
+        </ion-item>
+        <br>
+
+        <ion-button type="button" color="main" expand="block" id="logMoodBtn">Set</ion-button>
+        
+        <form>
+        </ion-col>
+        </ion-row>
+        
+      </ion-content>
+    `;
+  }
+});
+
+let currentModal4 = null;
+
+const button8 = document.getElementById('logFeelingBtn');
+//const button = document.getElementsByClassName("logDataBtn");
+if(button8){
+  button8.addEventListener('click', createModal4);
+}
+else{
+    console.log("button is null/undefined");
+}
+
+const button9 = document.getElementById('dismiss');
+if(button9){
+    button9.addEventListener('click', dismissModal4);
+}
+else{
+}
+
+async function createModal4() {
+  const modal = await modalController.create({
+    component: 'modal-content4',
+    cssClass: 'customModal4'
+  });
+
+  await modal.present();
+  currentModal = modal;
+}
+
+function dismissModal4() {
+  if (currentModal) {
+    currentModal.dismiss().then(() => { currentModal4 = null; });
+  }
+}
+
 
