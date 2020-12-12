@@ -145,7 +145,7 @@ function login(){
 
         console.log("logged in!")
         alert("successfully logged in!");
-        window.location.href = "./main.html";
+        //window.location.href = "./main.html";
     }
     else{
         console.log("wrong email/pass");
