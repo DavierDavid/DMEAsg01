@@ -65,7 +65,7 @@ $('#loadSign').click(function(e){
 
 $('#logoutBtn').click(function(e){
     e.preventDefault();
-    window.location.href = "./index.html";
+    window.location.href = "index.html";
 });
 
 /*$('#setDateBtn').click(function(e){
@@ -167,7 +167,7 @@ function updateDetails(){
     localStorage.setItem('storedBday', logbday);
 
     console.log("Update success! " + logname + " " + logemail + " " + logpass + " " + logbday);
-    window.location.href = "./main.html";
+    window.location.href = "main.html";
 }
 
 
@@ -211,7 +211,7 @@ function logDates(){
     calculateOngoing();
     calculateUpcoming();
 
-    window.location.href = "./main.html";
+    window.location.href = "main.html";
   
   //console.log("success! " + logStart + " " + logEnd)
 
@@ -233,7 +233,7 @@ function setLength(){
   console.log("period length = " + userPeriod + " cycle length = " + userCycle);
 
   calculateUpcoming()
-  window.location.href = "./main.html";
+  window.location.href = "main.html";
 }
 
 //-------------------Set profile details------------------------------------------------------------------------------------
@@ -330,7 +330,7 @@ function setMood(){
 
   console.log(logSleep + " " + logFlow);
 
-  window.location.href = "./main.html";
+  window.location.href = "main.html";
 
   checkMood();
 }
@@ -411,7 +411,7 @@ const button10 = document.getElementById('resetBtn');
       localStorage.removeItem('storedCycle');
       localStorage.removeItem('storedPeriod');
 
-      window.location.href = "./main.html";
+      window.location.href = "main.html";
 
     }
 
