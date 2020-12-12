@@ -2,7 +2,7 @@
 //-----------hide signup page on load------------------------------
 $(document).ready(function(){
     $('#signup-page').hide();
-    $("#noDateCircle").hide();
+    //$("#noDateCircle").hide();
 
 
 //create var to store user details on signup
@@ -17,11 +17,11 @@ var logpass;
 var logemail;
 var logbday;
 
-var logStart;
+var logStart 
 var logEnd;
-var logStartDay;
+var logStartDay = localStorage.getItem('storedStartDay');
 var logStartMonth;
-var logEndDay;
+var logEndDay = localStorage.getItem('storedEndDay');
 var logEndMonth;
 
 
@@ -65,6 +65,7 @@ $('#logoutBtn').click(function(e){
 $("body").on("click", "#setDateBtn", function(e) {
     e.preventDefault();
     logDates();
+    checkDate();
   });
 
   $("body").on("click", "#updateBtn", function(e) {
@@ -208,6 +209,8 @@ function logDates(){
 
     localStorage.setItem('storedEndDay', logEndDay);
     localStorage.setItem('storedEndMonth', logEndMonth);
+
+    
   
   //console.log("success! " + logStart + " " + logEnd)
 
@@ -236,6 +239,30 @@ function setLength(){
 //-------------------Set profile details------------------------------------------------
 document.getElementById("displayName").innerHTML = localStorage.getItem('storedName');
 document.getElementById("displayEmail").innerHTML = localStorage.getItem('storedEmail');
+
+function checkDate(){
+
+  if(localStorage['storedStartDay']){
+    console.log('date set ' + logStartDay + " " + logEndDay);
+    $("#noDateCircle").hide();
+    $("#startDateCircle").show();
+    $("#endDateCircle").hide(); 
+  }
+  else if(localStorage['storedEndDay']){
+    console.log("no start date but got end date " + logEndDay);
+    $("#noDateCircle").hide();
+    $("#startDateCircle").hide();
+    $("#endDateCircle").show();
+  }
+  else{
+    console.log('no dates set ' + logStartDay + " " + logEndDay);
+    $("#noDateCircle").show();
+    $("#startDateCircle").hide();
+    $("#endDateCircle").hide();
+  }
+}
+
+checkDate();
 
 });
 
@@ -287,10 +314,12 @@ customElements.define('modal-content', class ModalContent extends HTMLElement {
 
   const button = document.getElementById('logDateBtn');
   const button3 = document.getElementById('logDataBtn2');
+  const button4 = document.getElementById('logDataBtn3');
   //const button = document.getElementsByClassName("logDataBtn");
   if(button || button3 || button4){
     button.addEventListener('click', createModal);
     button3.addEventListener('click', createModal);
+    button4.addEventListener('click', createModal);
   }
   else{
       console.log("button is null/undefined");
@@ -481,3 +510,4 @@ function dismissModal3() {
     currentModal.dismiss().then(() => { currentModal = null; });
   }
 }
+
