@@ -210,6 +210,8 @@ function logDates(){
 
     calculateOngoing();
     calculateUpcoming();
+
+    window.location.href = "./main.html";
   
   //console.log("success! " + logStart + " " + logEnd)
 
@@ -328,6 +330,8 @@ function setMood(){
 
   console.log(logSleep + " " + logFlow);
 
+  window.location.href = "./main.html";
+
   checkMood();
 }
 
@@ -406,6 +410,8 @@ const button10 = document.getElementById('resetBtn');
       localStorage.removeItem('storedFlow');
       localStorage.removeItem('storedCycle');
       localStorage.removeItem('storedPeriod');
+
+      window.location.href = "./main.html";
 
     }
 
