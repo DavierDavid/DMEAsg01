@@ -1,18 +1,18 @@
 
-//-----------hide signup page on load------------------------------
+//-----------hide signup page on load---------------------------------------------------------------------------------------
 $(document).ready(function(){
     $('#signup-page').hide();
     //$('#slpText').hide();
     //$('#flowText').hide();
     //$("#noDateCircle").hide();
 
-//create var to store today's date
+//----------------------------create var to store today's date--------------------------------------------------------------
 var d = new Date();
 var todayDate = parseInt(d.getDate());
 
 //console.log(todayDate);
 
-//create var to store user details on signup
+//-----------------create var to store user details on signup---------------------------------------------------------------
 
 var username = $('#userName:nth-child(2)');
 var userpass = $('#userPassword:nth-child(2)');
@@ -24,9 +24,11 @@ var logpass;
 var logemail;
 var logbday;
 
+//-----------------create var to store user mood----------------------------------------------------------------------------
 var logFlow;
 var logSleep;
 
+//-----------------create var to store user period/cycle dates--------------------------------------------------------------
 var logStart 
 var logEnd;
 var logStartDay = localStorage.getItem('storedStartDay');
@@ -35,11 +37,11 @@ var logEndDay = localStorage.getItem('storedEndDay');
 var logEndMonth;
 
 
-//------------store default period/cycle lengths---------------------------
+//------------store default period/cycle lengths----------------------------------------------------------------------------
 var userPeriod = 7;
 var userCycle = 25;
 
-//------------buttons on click----------------------------------------------
+//------------buttons on click----------------------------------------------------------------------------------------------
 
 $('#logInBtn').click(function(e){
     e.preventDefault();
@@ -71,6 +73,8 @@ $('#logoutBtn').click(function(e){
     logDates();
     console.log('button clicked');
 });*/
+
+//-----------For the script to track buttons easily-------------------------------------------------------------------------
 
 $("body").on("click", "#setDateBtn", function(e) {
     e.preventDefault();
@@ -104,21 +108,9 @@ $('#closeBtn').click(function(e){
     closeLogDate();
 });*/
 
-
-
-/*document.getElementById("signupBtn").addEventListener("click", function(event){
-signup();
-});
-
-document.getElementById("signupBtn").addEventListener("click", function(event){
-    event.preventDefault()
-    signup();
-  });*/
-
-//-------------sign up function--------------------------------
+//-------------sign up function---------------------------------------------------------------------------------------------
 
 function signup(){
-    //event.preventDefault;
 
     logname = username.val();
     logpass = userpass.val();
@@ -130,19 +122,19 @@ function signup(){
     localStorage.setItem('storedEmail', logemail);
     localStorage.setItem('storedBday', logbday);
 
-    //var test1 = localStorage.getItem("storedName");
     logbday = logbday.slice(5, 11);
-    //alert(test1);
+
     $('#signup-page').hide();
     $('#login-page').show();
+
     console.log("Sign up success! " + logname + " " + logemail + " " + logpass + " " + logbday);
 }
 
 
-//-----------------log in function---------------------------------
+//-----------------log in function------------------------------------------------------------------------------------------
 
 function login(){
-    //e.preventDefault();
+
     var storedEmail = localStorage.getItem('storedEmail');
     var storedPass = localStorage.getItem('storedPass');
 
@@ -150,9 +142,9 @@ function login(){
     var enteredPass =  $('#logPassword:nth-child(2)');
 
     if ((enteredEmail.val() == storedEmail) && (enteredPass.val() == storedPass)){
+
         console.log("logged in!")
         alert("successfully logged in!");
-
         window.location.href = "./main.html";
     }
     else{
@@ -161,7 +153,7 @@ function login(){
     }
 }
 
-//-------------------Update profile details-------------------------------------------
+//-------------------Update profile details---------------------------------------------------------------------------------
 
 function updateDetails(){
     logname = $('#userName').val();
@@ -174,32 +166,25 @@ function updateDetails(){
     localStorage.setItem('storedEmail', logemail);
     localStorage.setItem('storedBday', logbday);
 
-    //logbday = logbday.slice(5, 11);
-
     console.log("Update success! " + logname + " " + logemail + " " + logpass + " " + logbday);
     window.location.href = "./main.html";
 }
 
-//----------function to open menu--------------------------
 
-async function openMenu() {
-    await menuController.open();
-  }
-
-  //----------function to show signup page--------------------------
+  //----------function to show signup page----------------------------------------------------------------------------------
 
 function loadSignup(){
     $('#signup-page').show();
     $('#login-page').hide();
 }
-//----------function to show login page--------------------------
+//----------function to show login page-------------------------------------------------------------------------------------
 
 function loadLogin(){
     $('#signup-page').hide();
     $('#login-page').show();
 }
 
-/*--------------------select date page---------------------------------------*/
+/*----------------------------------------------------select date page----------------------------------------------------*/
 
 function logDates(){
     var enteredStart = $('#userStart:nth-child(2)');
@@ -246,22 +231,19 @@ function setLength(){
   console.log("period length = " + userPeriod + " cycle length = " + userCycle);
 
   calculateUpcoming()
-
-
-
-
+  window.location.href = "./main.html";
 }
 
-//-------------------Set profile details------------------------------------------------
+//-------------------Set profile details------------------------------------------------------------------------------------
 document.getElementById("displayName").innerHTML = localStorage.getItem('storedName');
 document.getElementById("displayEmail").innerHTML = localStorage.getItem('storedEmail');
 
-//-------------------Set sleep and flow details-------------------------------------------
+//-------------------Set sleep and flow details-----------------------------------------------------------------------------
 
 document.getElementById("slpText").innerHTML = localStorage.getItem('storedSleep');
 document.getElementById("flowText").innerHTML = localStorage.getItem('storedFlow');
 
-//--------------------Change page to preview----------------------------------------------
+//--------------------Change page to preview--------------------------------------------------------------------------------
 function checkDate(){
 
   if(localStorage['storedStartDay']){
@@ -284,6 +266,7 @@ function checkDate(){
   }
 }
 
+//-----------------------function to calculate when period is coming--------------------------------------------------------
 function calculateUpcoming(){
   if(logEndDay < todayDate){
 
@@ -315,6 +298,8 @@ function calculateUpcoming(){
   */
 }
 
+
+//--------------------function to calculate period days---------------------------------------------------------------------
 function calculateOngoing(){
   if(todayDate > logStartDay){
     var stDate = parseInt(localStorage.getItem('storedStartDay'));
@@ -326,9 +311,11 @@ function calculateOngoing(){
     document.getElementById("cir-st-date").innerHTML = "Day 1";
   }
 
-  //never include month, can only calculate based on days. 
+  //never include month, can only calculate based on days. -----------------------------------------------------------------
 }
 
+
+//-------------------------function to set user mood------------------------------------------------------------------------
 function setMood(){
   logFlow = $('#moodFlow').val();
   logSleep = $('#moodSleep').val();
@@ -342,10 +329,9 @@ function setMood(){
   console.log(logSleep + " " + logFlow);
 
   checkMood();
-
-
 }
 
+//-----------------------function if check if flow/sleep hours is empty and display accordingly-----------------------------
 function checkMood(){
 
   if(localStorage['storedFlow']){
@@ -370,21 +356,72 @@ function checkMood(){
   
 }
 
+//--------------------------------------function for alert and button to reset all data-------------------------------------
+const button10 = document.getElementById('resetBtn');
+    button10.addEventListener('click', presentAlertConfirm);
+
+    async function presentAlertConfirm() {
+      const alert = document.createElement('ion-alert');
+      alert.cssClass = 'my-custom-class';
+      alert.header = 'Reset all data?';
+      alert.message = 'Confirm reset and delete all data? Your account will not be deleted';
+      alert.buttons = [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }, {
+          text: 'Confirm',
+          handler: () => {
+            resetData();
+            console.log('Confirm clicked')
+          }
+        }
+      ];
+    
+      document.body.appendChild(alert);
+      return alert.present();
+    }
+    
+    /*function handleButtonClick() {
+      const alert = await alertController.create({
+        header: 'Use this lightsaber?',
+        message: 'Do you agree to use this lightsaber to do good across the galaxy?',
+        buttons: ['Disagree', 'Agree']
+      });
+
+      await alert.present();
+    }*/
+
+//-----------------------functoin to reset data-----------------------------------------------------------------------------
+    function resetData(){
+      localStorage.removeItem('storedStartDay');
+      localStorage.removeItem('storedStartMonth');
+      localStorage.removeItem('storedEndDay');
+      localStorage.removeItem('storedEndMonth');
+      localStorage.removeItem('storedSleep');
+      localStorage.removeItem('storedFlow');
+      localStorage.removeItem('storedCycle');
+      localStorage.removeItem('storedPeriod');
+
+    }
 
 
+//--------run these functions on load---------------------------------------------------------------------------------------
 checkMood();
 checkDate();
 calculateOngoing();
 calculateUpcoming();
 
-
-
 });
 
-//-----------------END OF DOCUMENT ON READY-----------------------------------------------
+//=================END OF DOCUMENT ON READY=================================================================================
 
 
-//-----------------Edit dates modal--------------------------------------------------------
+//-----------------Edit dates modal-----------------------------------------------------------------------------------------
 customElements.define('modal-content', class ModalContent extends HTMLElement {
     connectedCallback() {
       this.innerHTML = `
@@ -425,6 +462,8 @@ customElements.define('modal-content', class ModalContent extends HTMLElement {
     }
   });
 
+  //------------buttons and functions for edit dates------------------------------------------------------------------------
+
   let currentModal = null;
 
   const button = document.getElementById('logDateBtn');
@@ -463,7 +502,7 @@ customElements.define('modal-content', class ModalContent extends HTMLElement {
     }
   }
 
-//-----------------Edit details modal--------------------------------------------------------
+//-----------------Update login details modal-------------------------------------------------------------------------------
 
   customElements.define('modal-content2', class ModalContent extends HTMLElement {
     connectedCallback() {
@@ -524,6 +563,7 @@ customElements.define('modal-content', class ModalContent extends HTMLElement {
     }
   });
 
+  //---------------function and buttons for update user details-------------------------------------------------------------
   let currentModal2 = null;
 
   const button5 = document.getElementById('editDetails');
@@ -551,7 +591,7 @@ customElements.define('modal-content', class ModalContent extends HTMLElement {
     }
   }
 
-  //-----------------Edit dates modal--------------------------------------------------------
+//-----------------Edit period/cycle dates modal-----------------------------------------------------------------------------------------
 customElements.define('modal-content3', class ModalContent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
@@ -592,6 +632,7 @@ customElements.define('modal-content3', class ModalContent extends HTMLElement {
   }
 });
 
+//-----------------function and buttons to set cycle/period length----------------------------------------------------------
 let currentModal3 = null;
 
 const button6 = document.getElementById('setLengthBtn');
@@ -626,7 +667,7 @@ function dismissModal3() {
   }
 }
 
-//-----------------Edit mood modal--------------------------------------------------------
+//-----------------Edit mood modal------------------------------------------------------------------------------------------
 customElements.define('modal-content4', class ModalContent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
@@ -686,6 +727,7 @@ customElements.define('modal-content4', class ModalContent extends HTMLElement {
   }
 });
 
+//-----------------function and buttons to edit mood------------------------------------------------------------------------
 let currentModal4 = null;
 
 const button8 = document.getElementById('logFeelingBtn');
@@ -721,3 +763,4 @@ function dismissModal4() {
 }
 
 
+//=================END======================================================================================================

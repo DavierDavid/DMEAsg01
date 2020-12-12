@@ -4,7 +4,7 @@ body{
     font-family: 'Raleway', sans-serif;
 }
 
-/*-----------change ionic default colors----------------------------------*/
+/*-----------------change ionic default colors----------------------------------------------------------------------------*/
 :root {
     --ion-color-main: #81B29A;
     --ion-color-main-rgb: 129,178,154;
@@ -65,23 +65,23 @@ body{
   }
   
 
-/*-----------Title----------------------------------*/
+/*-----------------Title--------------------------------------------------------------------------------------------------*/
 h3{
-    margin: 5% 0 0 0;
+    margin: 0 0 0 0;
     text-align: center;
     font-family: 'Quicksand', sans-serif;
     font-size: 42px;
     font-weight: 600;
 }
 
-/*-----------sub title----------------------------------*/
+/*-----------------sub title----------------------------------------------------------------------------------------------*/
 h4{
     text-align: center;
     font-weight: 500;
     font-size: 24px;
 }
 
-/*-----------small text----------------------------------*/
+/*-----------------small text---------------------------------------------------------------------------------------------*/
 h5{
     text-align: center;
     color: slategray;
@@ -191,6 +191,7 @@ z-index: 1;
 	top:1px;
 }
 
+/*-----------------set mood button----------------------------------------------------------------------------------------*/
 .circle-button2 {
 	background-color: #81B29A;
 	border-radius:42px;
@@ -209,6 +210,7 @@ z-index: 1;
 	top:1px;
 }
 
+/*-----------------custom size for set period dates modal-----------------------------------------------------------------*/
 .customModal .modal-wrapper{
     height: 40%;
     top: 60%;
@@ -216,6 +218,7 @@ z-index: 1;
     display: block;  
 }
 
+/*-----------------custom size for edit details length modal--------------------------------------------------------------*/
 .customModal2 .modal-wrapper{
     height: 60%;
     top: 40%;
@@ -223,16 +226,12 @@ z-index: 1;
     display: block;  
 }
 
+/*-----------------custom size for set mood modal-------------------------------------------------------------------------*/
 .customModal4 .modal-wrapper{
     height: 50%;
     top: 50%;
     position: absolute; 
     display: block;  
-}
-
-.test{
-    background-color: red;
-    color: green;
 }
 
 .profile-details{

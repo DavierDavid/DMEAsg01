@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DME Asg 1</title>
+    <title>Paddy</title>
 
     <!--CSS Styling-->
     <!--Ionic-->
@@ -29,6 +29,8 @@
         window.menuController = menuController;
         import { modalController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
         window.modalController = modalController;
+        import { alertController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
+        window.alertController = alertController;
 
     </script>
 
@@ -57,6 +59,11 @@
                         <ion-item class="menu-selection" id="setLengthBtn">
                             <ion-icon name="water" slot="start"></ion-icon>
                             <ion-label>Edit Period/Cycle length</ion-label>
+                        </ion-item>
+
+                        <ion-item class="menu-selection" id="resetBtn">
+                            <ion-icon name="warning" slot="start"></ion-icon>
+                            <ion-label>Reset all data</ion-label>
                         </ion-item>
 
                         <ion-item class="menu-selection" id="logoutBtn">
